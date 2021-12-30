@@ -21,10 +21,8 @@ export const EditVaccineRegistration = () => {
   const [selectedSlotId, setSelectedSlotId] = useState("");
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
   useEffect(() => {
-    fetch(`${REACT_APP_BACKEND_URL}/centers.json`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/centers.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -39,7 +37,7 @@ export const EditVaccineRegistration = () => {
       return;
     }
 
-    fetch(`${REACT_APP_BACKEND_URL}/slots/${selectedSlotId}.json`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/slots/${selectedSlotId}.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -54,7 +52,7 @@ export const EditVaccineRegistration = () => {
       return;
     }
 
-    fetch(`${REACT_APP_BACKEND_URL}/slots.json?center_id=${selectedCenterId}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/slots.json?center_id=${selectedCenterId}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -65,7 +63,7 @@ export const EditVaccineRegistration = () => {
   }, [selectedCenterId, isEdited]);
 
   useEffect(() => {
-    fetch(`${REACT_APP_BACKEND_URL}/bookings/${bookingId}.json`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bookings/${bookingId}.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -75,7 +73,7 @@ export const EditVaccineRegistration = () => {
           setResidentNric(result.resident_nric);
         }
       );
-  }, []);
+  }, [bookingId]);
 
   const handleRegister = () => {
     setIsEdited(false);
@@ -83,7 +81,7 @@ export const EditVaccineRegistration = () => {
     setError(null);
     const data = { slot_id: selectedSlotId };
 
-    fetch(`${REACT_APP_BACKEND_URL}/bookings/${bookingId}.json`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bookings/${bookingId}.json`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',

@@ -16,10 +16,8 @@ export const VaccineRegistration = () => {
   const [selectedSlotId, setSelectedSlotId] = useState("");
   const [slots, setSlots] = useState([]);
 
-  const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
   useEffect(() => {
-    fetch(`${REACT_APP_BACKEND_URL}/centers.json`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/centers.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -35,7 +33,7 @@ export const VaccineRegistration = () => {
       return;
     }
 
-    fetch(`${REACT_APP_BACKEND_URL}/slots.json?center_id=${selectedCenterId}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/slots.json?center_id=${selectedCenterId}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -56,7 +54,7 @@ export const VaccineRegistration = () => {
     }
     const data = { resident_nric: nric, slot_id: selectedSlotId };
 
-    fetch(`${REACT_APP_BACKEND_URL}/bookings.json`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bookings.json`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

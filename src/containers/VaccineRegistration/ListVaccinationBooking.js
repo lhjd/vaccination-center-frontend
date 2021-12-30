@@ -22,10 +22,8 @@ export const VaccineRegistrationListing = () => {
   const [status, setStatus] = useState(null);
   const [bookings, setBookings] = useState([]);
 
-  const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
   useEffect(() => {
-    fetch(`${REACT_APP_BACKEND_URL}/bookings.json`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bookings.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -35,7 +33,7 @@ export const VaccineRegistrationListing = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${REACT_APP_BACKEND_URL}/bookings.json`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bookings.json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -45,7 +43,7 @@ export const VaccineRegistrationListing = () => {
   }, [status]);
 
   const handleDeleteBooking = (bookingId) => {
-    fetch(`${REACT_APP_BACKEND_URL}/bookings/${bookingId}.json`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/bookings/${bookingId}.json`, {
       method: 'DELETE',
     })
       .then(res => {
